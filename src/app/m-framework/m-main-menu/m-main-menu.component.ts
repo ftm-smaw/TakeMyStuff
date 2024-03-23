@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 @Component({
   selector: 'm-main-menu',
   standalone: true,
@@ -10,7 +11,7 @@ import { CommonModule } from '@angular/common';
 export class MMainMenuComponent {
   private menuItems: string[]; 
 
-  constructor(){
+  constructor(private router: Router){
     this.menuItems = [];
   }
 
@@ -24,5 +25,8 @@ export class MMainMenuComponent {
   }
   feature2path(feature: string){
     return feature.replace(/\s+/g, '').toLowerCase();
+  }
+  routeToPage(feature: string){
+    this.router.navigate([this.feature2path(feature)]);
   }
 }
