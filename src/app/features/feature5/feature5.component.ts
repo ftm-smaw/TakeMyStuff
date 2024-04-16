@@ -32,8 +32,8 @@ export class Feature5Component {
     this.chartOptions = {
       theme:'light2',
       title:{text:""},
-      axisX:{text:"x"},
-      axisY:{text:"y"},
+      axisX:{title:"x"},
+      axisY:{title:"y"},
       data: [
         {type: "scatter", dataPoints: this.dataList, showInLegend: true, legendText: "Original Data"},
         {type: "line"   , dataPoints: this.polyno,   showInLegend: true, legendText: "Polynomial Regression", markerType: "none"},
@@ -50,13 +50,12 @@ export class Feature5Component {
 
     this.regressionService.fun1();
 
-    this.chartOptions = {
-      data: [
+    this.chartOptions.data= [
         {type: "scatter", dataPoints: this.dataList, showInLegend: true, legendText: "Original Data"},
         {type: "line"   , dataPoints: this.polyno,   showInLegend: true, legendText: "Polynomial Regression", markerType: "none"},
         {type: "line"   , dataPoints: this.linear,   showInLegend: true, legendText: "Linear Regression"    , markerType: "none"}
       ]
-    }
+    
 
     this.chart.render();
     this.x = "";
