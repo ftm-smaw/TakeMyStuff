@@ -1,15 +1,14 @@
 <m-container>
-    <form class="pure-form pure-form-stacked">
-        <label for="x">x</label>
-        <input id="x" type="number" [(ngModel)]="x" [ngModelOptions]="{standalone:true}"/>
-        
-        <label for="y">y</label>
-        <input id="y" type="number" [(ngModel)]="y" [ngModelOptions]="{standalone:true}"/>
-
-        <button class="pure-button" (click)="addData()">Add Data</button>
-    </form>
-    <canvasjs-chart 
-        [options]="chartOptions" 
-        (chartInstance)="getChartInstance($event)">
-    </canvasjs-chart>
+    <m-card [header]="'Test'" [subheader]="'T'" [imageurl]="''">
+        <table>
+            <tr>
+                <td>rainSPOT</td>
+                <td style="text-align: center; vertical-align: middle;">
+                    <m-rainspot
+                    [rainSPOT]="[1,2,3,0,0,0,1,2,3,1,2,3,0,0,0,1,2,3,1,2,3,0,0,0,1,2,3,1,2,3,0,0,0,1,2,3,1,2,3,0,0,0,1,2,3,1,2,3,0,0,0]"
+                    ></m-rainspot>
+                </td>
+            </tr>
+        </table>
+    </m-card>
 </m-container>
