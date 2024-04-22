@@ -1,0 +1,63 @@
+export class WeatherData {
+    time: string;
+    temperatureInstant: number;
+    precipitation: number;
+    predictability: number;
+    temperatureMax: number;
+    sealevelPressureMean: number;
+    windspeedMean: number;
+    precipitationHours: number;
+    sealevelPressureMin: number;
+    pictocode: number;
+    snowFraction: number;
+    humidityGreater90Hours: number;
+    convectivePrecipitation: number;
+    relativeHumidityMax: number;
+    temperatureMin: number;
+    windDirection: number;
+    feltTemperatureMax: number;
+    relativeHumidityMin: number;
+    feltTemperatureMean: number;
+    windspeedMin: number;
+    feltTemperatureMin: number;
+    precipitationProbability: number;
+    uvIndex: number;
+    rainSpot: string;
+    temperatureMean: number;
+    sealevelPressureMax: number;
+    relativeHumidityMean: number;
+    predictabilityClass: number;
+    windspeedMax: number;
+
+    constructor(data: any) {
+        this.time = data.time;
+        this.temperatureInstant = data.temperatureInstant;
+        this.precipitation = data.precipitation;
+        this.predictability = data.predictability;
+        this.temperatureMax = data.temperatureMax;
+        this.sealevelPressureMean = data.sealevelPressureMean;
+        this.windspeedMean = data.windspeedMean;
+        this.precipitationHours = data.precipitationHours;
+        this.sealevelPressureMin = data.sealevelPressureMin;
+        this.pictocode = data.pictocode;
+        this.snowFraction = data.snowFraction;
+        this.humidityGreater90Hours = data.humidityGreater90Hours;
+        this.convectivePrecipitation = data.convectivePrecipitation;
+        this.relativeHumidityMax = data.relativeHumidityMax;
+        this.temperatureMin = data.temperatureMin;
+        this.windDirection = data.windDirection;
+        this.feltTemperatureMax = data.feltTemperatureMax;
+        this.relativeHumidityMin = data.relativeHumidityMin;
+        this.feltTemperatureMean = data.feltTemperatureMean;
+        this.windspeedMin = data.windspeedMin;
+        this.feltTemperatureMin = data.feltTemperatureMin;
+        this.precipitationProbability = data.precipitationProbability;
+        this.uvIndex = data.uvIndex;
+        this.rainSpot = data.rainSpot;
+        this.temperatureMean = data.temperatureMean;
+        this.sealevelPressureMax = data.sealevelPressureMax;
+        this.relativeHumidityMean = data.relativeHumidityMean;
+        this.predictabilityClass = data.predictabilityClass;
+        this.windspeedMax = data.windspeedMax;
+    }
+}

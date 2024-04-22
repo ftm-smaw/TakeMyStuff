@@ -1,14 +1,3 @@
 <m-container>
-    <m-card [header]="'Test'" [subheader]="'T'" [imageurl]="''">
-        <table>
-            <tr>
-                <td>rainSPOT</td>
-                <td style="text-align: center; vertical-align: middle;">
-                    <m-rainspot
-                    [rainSPOT]="[1,2,3,0,0,0,1,2,3,1,2,3,0,0,0,1,2,3,1,2,3,0,0,0,1,2,3,1,2,3,0,0,0,1,2,3,1,2,3,0,0,0,1,2,3,1,2,3,0,0,0]"
-                    ></m-rainspot>
-                </td>
-            </tr>
-        </table>
-    </m-card>
+    <m-weather *ngFor="let data of weatherDataObjects" [dayWeather]="data" ></m-weather>
 </m-container>
