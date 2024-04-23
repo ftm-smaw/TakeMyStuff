@@ -1,3 +1,8 @@
 <m-container>
+    <h1> Abu Dhabi Weather Data </h1>
+    <h2> Longitude:{{long}} Latitude:{{lati}} </h2>
+    <p>{{address}}</p>
+    <button class="pure-button" (click)="getLocation()">Get Local Weather</button>
+    <button class="pure-button" (click)="getNYCWeather()">Get NYC Weather</button>
     <m-weather *ngFor="let data of weatherDataObjects" [dayWeather]="data" ></m-weather>
 </m-container>

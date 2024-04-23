@@ -15,4 +15,10 @@ export class MWeatherComponent {
     const date = new Date(dateStr);
     return date.toLocaleDateString('en-US', { weekday: 'long' });
   }
+  decoderainSpotString(rainString: string){
+    let array: number[] = [];
+    for(let i = 0; i< rainString.length; i++)
+      array.push(+rainString[i]);
+    return array;
+  }
 }
