@@ -1,0 +1,26 @@
+<m-container class="container">
+    <h2 class="title">Daily Feed</h2>
+    <ul class="list">
+    <li class="list-item" *ngFor="let listing of listings">
+        <h3>{{ listing.itemName }}</h3>
+        <img class="image" src="{{listing.imageURL}}" />
+        <div>
+            <span style="font-weight: bold;">Description: </span>
+            <span> {{listing.itemDesc}} </span>
+        </div>
+        <div>
+            <span style="font-weight: bold;">Category: </span>
+            <span> {{listing.category}} </span>
+        </div>
+        <div>
+            <span style="font-weight: bold;">Pick-up Location: </span>
+            <span> {{listing.address}} </span>
+        </div>
+        <div>
+            <span style="font-weight: bold;">Price: </span>
+            <span> {{listing.price}} AED </span>
+        </div>
+        <button (click)="goToChat()">Interested? Click here to chat with the seller</button>
+    </li>
+    </ul>
+</m-container>

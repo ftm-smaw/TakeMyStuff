@@ -1,0 +1,20 @@
+<m-container> 
+    <div class="container">
+        <div class="top">
+            <span class="username">Chatting with: nada</span>
+        </div>
+        <div class="middle">
+            <div *ngFor="let message of messages" class="message">
+                <span class="sender">{{message.sender_username}}:</span>
+                <span class="text">{{message.message_content}}</span>
+            </div>
+        </div>
+        <div class="bottom">
+            <input type="text" [(ngModel)]="message_content" [ngModel]="{standalone: true}">
+            <button type="submit" (click)="sendMessage()">Send</button>
+        </div>
+    </div>
+    <m-aha type="{{toast.type}}" header="{{toast.header}}" *ngIf="toast.ngIfControl">
+        {{toast.message}}
+    </m-aha>
+</m-container>
