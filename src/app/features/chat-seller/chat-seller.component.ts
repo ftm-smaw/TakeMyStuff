@@ -5,29 +5,18 @@ import { FormsModule } from '@angular/forms';
 import { FirebaseService } from '../../services/firebase.service';
 import { MAhaComponent } from "../../m-framework/m-aha/m-aha.component";
 import { ToastService } from '../../services/toast.service';
- 
-export class message {
-    key: string;
-    sender_username: string;
-    message_content: string;
- 
-    constructor(key: string, sender_username: string, content: string) {
-        this.key = key;
-        this.sender_username = sender_username;
-        this.message_content = content;
-    }
-}
+import { message } from '../../app-data/Data';
  
 @Component({
     selector: 'app-chat-seller',
     standalone: true,
+    imports: [FormsModule, CommonModule, MContainerComponent, MAhaComponent],
     templateUrl: './chat-seller.component.html',
-    styleUrls: ['./chat-seller.component.css'],
-    imports: [FormsModule, CommonModule, MContainerComponent, MAhaComponent]
+    styleUrls: ['./chat-seller.component.css']
 })
 export class ChatSellerComponent implements OnInit {
   sender_username: string;
-  message_content: string;
+  message_content: string = "";
   messages: message[];
  
   constructor(private firebase: FirebaseService, public toast: ToastService) {
@@ -54,13 +43,13 @@ export class ChatSellerComponent implements OnInit {
 
 
   sendMessage(): void {
-    if (this.message_content.trim() !== "") {
-      const new_message = { message_content: this.message_content, sender_username: this.sender_username };
+    const new_message = { message_content: this.message_content, sender_username: this.sender_username };
+    if (new_message.message_content.trim() !== "") {
       let key = this.firebase.addToList('/messages', new_message)!;
-      if(new_message.sender_username != this.sender_username){
-        this.toast.prepare(new_message.sender_username + ": " +new_message.message_content,"success",5000,"New message alert").show();
-      }
-      this.message_content = '';
     }
+    
+    let notification: string = new_message.sender_username + ": " +new_message.message_content;
+    this.toast.prepare(notification,"success",5000,"New message alert").show();
+    this.message_content = "";
   }
 }

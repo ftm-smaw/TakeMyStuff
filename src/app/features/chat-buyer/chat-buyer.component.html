@@ -14,6 +14,9 @@
             <button type="submit" (click)="sendMessage()">Send</button>
         </div>
     </div>
+    <div>
+        <button (click)="endChatSession()">End Chat Session</button>
+    </div>
     <m-aha type="{{toast.type}}" header="{{toast.header}}" *ngIf="toast.ngIfControl">
         {{toast.message}}
     </m-aha>

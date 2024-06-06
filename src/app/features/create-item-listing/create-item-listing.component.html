@@ -1,38 +1,48 @@
 <m-container>
     <form class="pure-form pure-form-stacked">
-        <label for="itemName">Item Name
-            <input type="text" id="itemName" placeholder="enter the item name" name="itemName" [(ngModel)]="itemName" [ngModelOptions]="{standalone:true}" />
-        </label>
-        
-        <label>Category</label>
-        <button (click)="setCategoryAsLighting()">Lighting</button>
-        <button (click)="setCategoryAsDecoration()">Decorations</button>
-        <button (click)="setCategoryAsFurniture()">Furniture</button>
-        <button (click)="setCategoryAsElectronics()">Electronics</button>
-        <button (click)="setCategoryAsStorage()">Storage</button>
-        <button (click)="setCategoryAsOther()">Other</button>
-
-        <label for="Desc"> Description:
-            <input type="text"   id="desc" placeholder="put a short description" name="desc" [(ngModel)]="desc" [ngModelOptions]="{standalone:true}" />
-        </label>
-
-        <label for="AvailabilityTime">Availability Time: </label>
-            <input type="datetime-local" id="availabilityTime" name="availabilityTime" [(ngModel)]="AvailabilityTime" [ngModelOptions]="{standalone:true}" />
-
-        <label for="file">Upload Image URL:</label>
-        <input type="string" id="file" [(ngModel)]="imageURL" [ngModelOptions]="{standalone:true}" />
-
-        <label for="location"> Location: </label>
-        <button (click)="getLocation()">Get Current Location</button>
-        <div *ngIf="location">
+      <label for="itemName">Item Name
+        <input type="text" id="itemName" placeholder="Enter the item name" name="itemName" [(ngModel)]="itemName" [ngModelOptions]="{standalone: true}" />
+      </label>
+     
+      <label>Category</label>
+      <div>
+        <button type="button" (click)="setCategoryAsLighting()">Lighting</button>
+        <button type="button" (click)="setCategoryAsDecoration()">Decoration</button>
+        <button type="button" (click)="setCategoryAsFurniture()">Furniture</button>
+        <button type="button" (click)="setCategoryAsElectronics()">Electronics</button>
+        <button type="button" (click)="setCategoryAsStorage()">Storage</button>
+        <button type="button" (click)="setCategoryAsOther()">Other</button>
+      </div>
+ 
+      <label for="desc">Description
+        <input type="text" id="desc" placeholder="Put a short description" name="desc" [(ngModel)]="desc" [ngModelOptions]="{standalone: true}" />
+      </label>
+ 
+      <label for="availabilityTime">Availability Time
+        <input type="datetime-local" id="availabilityTime" name="availabilityTime" [(ngModel)]="AvailabilityTime" [ngModelOptions]="{standalone: true}" />
+      </label>
+ 
+      <label for="file">Upload Image
+        <input type="file" id="file" (change)="onSelectImage($event)" />
+      </label>
+ 
+     
+      <div *ngIf="selectedImage">
+        <img [src]="selectedImage" alt="Item Image" style="max-width: 200px; margin-top: 10px;">
+      </div>
+ 
+      <label for="location">Location
+        <button type="button" (click)="getLocation()">Get Current Location</button>
+      </label>
+      <div *ngIf="location">
         <p>Location: {{ location }}</p>
-
-        <label>Price</label>
-        <input type="number" [ngModel]="price" [ngModelOptions]="{standalone:true}"/>
-        
-        </div>
-
-        <button class="pure-button" (click)="addItemToList()">Add Item to List</button>
+      </div>
+ 
+      <label for="price">Price
+        <input type="number" id="price" [(ngModel)]="price" [ngModelOptions]="{standalone: true}" />
+      </label>
+ 
+      <button type="button" class="pure-button" (click)="addItemToList()">Add Item to List</button>
     </form>
-
-</m-container>
+  </m-container>
+ 

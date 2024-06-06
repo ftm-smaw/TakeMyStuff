@@ -4,8 +4,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MMainMenuComponent } from '../../m-framework/m-main-menu/m-main-menu.component';
 import { HttpClient } from '@angular/common/http';
-import { FirebaseService } from '../../services/firebase.service'; // Import your Firebase service
-
+import { FirebaseService } from '../../services/firebase.service';
+ 
 export class ItemListing {
   key: string;
   itemName: string;
@@ -13,11 +13,11 @@ export class ItemListing {
   itemDesc: string;
   location_latitude: string;
   location_longitude: string;
-  address:string;
+  address: string;
   available_time: string;
-  imageURL: string;
+  selectedImage: string;
   price: number;
-
+ 
   constructor(
     key: string,
     itemName: string,
@@ -25,10 +25,10 @@ export class ItemListing {
     itemDesc: string,
     location_latitude: string,
     location_longitude: string,
-    address:string,
+    address: string,
     available_time: string,
-    imageURL: string,
-    price:number
+    selectedImage: string,
+    price: number
   ) {
     this.key = key;
     this.itemName = itemName;
@@ -38,16 +38,17 @@ export class ItemListing {
     this.location_longitude = location_longitude;
     this.address = address;
     this.available_time = available_time;
-    this.imageURL = imageURL;
+    this.selectedImage = selectedImage;
     this.price = price;
   }
 }
+ 
 @Component({
   selector: 'app-create-item-listing',
   standalone: true,
   imports: [MContainerComponent, MMainMenuComponent, CommonModule, FormsModule],
   templateUrl: './create-item-listing.component.html',
-  styleUrl: './create-item-listing.component.css'
+  styleUrls: ['./create-item-listing.component.css']
 })
 export class CreateItemListingComponent {
   age: number;
@@ -61,13 +62,13 @@ export class CreateItemListingComponent {
   address: string;
   dataDays: any[] = [];
   reversegeocodingurl: string = '';
-  imageURL: string;
+ 
   price: number;
-
-  anItem: ItemListing; // Define the anItem property
+  selectedImage: string;
+ 
   items: ItemListing[] = []; // Initialize the items array
-
-  constructor(private http: HttpClient, private firebase: FirebaseService) { // Inject FirebaseService
+ 
+  constructor(private http: HttpClient, private firebase: FirebaseService) {
     this.age = 30;
     this.lati = 0;
     this.long = 0;
@@ -77,34 +78,29 @@ export class CreateItemListingComponent {
     this.location = '';
     this.AvailabilityTime = '';
     this.address = '';
-    this.imageURL = '';
     this.price = 0;
-
-    this.anItem = new ItemListing("","","","","","","","","",0);
-    this.items = [];
-    this.items.push(this.anItem);
-  
+    this.selectedImage='';
   }
-
-  setCategoryAsLighting(){
-    this.category = "Lighting;"
+ 
+  setCategoryAsLighting() {
+    this.category = "Lighting";
   }
-  setCategoryAsDecoration(){
-    this.category = "Decoration;"
+  setCategoryAsDecoration() {
+    this.category = "Decoration";
   }
-  setCategoryAsFurniture(){
-    this.category = "Furniture;"
+  setCategoryAsFurniture() {
+    this.category = "Furniture";
   }
-  setCategoryAsElectronics(){
-    this.category = "Electronic;"
+  setCategoryAsElectronics() {
+    this.category = "Electronics";
   }
-  setCategoryAsStorage(){
-    this.category = "Storage;"
+  setCategoryAsStorage() {
+    this.category = "Storage";
   }
-  setCategoryAsOther(){
-    this.category = "Lighting;"
+  setCategoryAsOther() {
+    this.category = "Other";
   }
-
+ 
   getLocation() {
     console.log("Inside function");
     if (navigator.geolocation) {
@@ -122,7 +118,7 @@ export class CreateItemListingComponent {
       );
     }
   }
-
+ 
   getAddress() {
     this.reversegeocodingurl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.lati},${this.long}&key=AIzaSyB4YV2oKXy5f6zQXtBDZRg-_DNeU4nocAM`;
     this.http.get(this.reversegeocodingurl).subscribe(
@@ -140,10 +136,26 @@ export class CreateItemListingComponent {
       }
     );
   }
-
-
+ 
+  onSelectImage(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    if (inputElement.files && inputElement.files[0]) {
+      const file = inputElement.files[0];
+      if (file.size < 5000000) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          this.selectedImage = reader.result as string;
+        };
+        reader.readAsDataURL(file);
+      } else {
+        alert('Image size more than 5MB');
+      }
+    }
+ 
+  }
+ 
   addItemToList() {
-    if (this.anItem != null && this.items != null) {
+    if (this.itemName.trim() !== '' && this.desc.trim() !== '' && this.address.trim() !== '' && this.price > 0) {
       const object = {
         itemName: this.itemName,
         category: this.category,
@@ -152,24 +164,23 @@ export class CreateItemListingComponent {
         location_longitude: this.long.toString(),
         address: this.address,
         available_time: this.AvailabilityTime.toString(),
-        imageURL: this.imageURL,
+        imageURL: this.selectedImage.toString() ,
         price: this.price
       };
-
+ 
       let key = this.firebase.addToList('/items', object)!;
       this.items.push(new ItemListing(
-            key,
-            this.itemName,
-            this.category,
-            this.desc,
-            this.lati.toString(),
-            this.long.toString(),
-            this.address,
-            this.AvailabilityTime.toString(),
-            this.imageURL,
-            this.price
-          ));
-        }
-      }
-
+        key,
+        this.itemName,
+        this.category,
+        this.desc,
+        this.lati.toString(),
+        this.long.toString(),
+        this.address,
+        this.AvailabilityTime.toString(),
+         this.selectedImage.toString(),
+        this.price
+      ));
+    }
+  }
 }
