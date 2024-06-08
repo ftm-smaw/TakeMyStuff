@@ -30,8 +30,6 @@ export class preference{
     this.location_latitude = location_latitude;
     this.location_longitude = location_longitude;
     this.available_time = available_time;
-    
-    
   }
 }
 
@@ -105,23 +103,8 @@ export class CreatePrefsComponent {
     );
   }
 
-  setCategoryAsLighting(){
-    this.category = "Lighting;"
-  }
-  setCategoryAsDecoration(){
-    this.category = "Decoration;"
-  }
-  setCategoryAsFurniture(){
-    this.category = "Furniture;"
-  }
-  setCategoryAsElectronics(){
-    this.category = "Electronic;"
-  }
-  setCategoryAsStorage(){
-    this.category = "Storage;"
-  }
-  setCategoryAsOther(){
-    this.category = "Lighting;"
+  setCategory(category: string) {
+    this.category = category;
   }
 
   addnew() {

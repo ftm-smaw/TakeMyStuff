@@ -3,7 +3,7 @@
     <ul class="list">
     <li class="list-item" *ngFor="let listing of listings">
         <h3>{{ listing.itemName }}</h3>
-        <img class="image" src="{{listing.imageURL}}" />
+        <img class="image" src="{{listing.selectedImage}}" />
         <div>
             <span style="font-weight: bold;">Description: </span>
             <span> {{listing.itemDesc}} </span>
@@ -20,7 +20,7 @@
             <span style="font-weight: bold;">Price: </span>
             <span> {{listing.price}} AED </span>
         </div>
-        <button (click)="goToChat()">Interested? Click here to chat with the seller</button>
+        <button class="button" (click)="goToChat()">Interested? Click here to chat with the seller</button>
     </li>
     </ul>
 </m-container>

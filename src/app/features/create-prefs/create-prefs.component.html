@@ -1,22 +1,27 @@
 <m-container>
-    <form class="pure-form pure-form-stacked">         
-        <label>Category</label>
-        <button (click)="setCategoryAsLighting()">Lighting</button>
-        <button (click)="setCategoryAsDecoration()">Decorations</button>
-        <button (click)="setCategoryAsFurniture()">Furniture</button>
-        <button (click)="setCategoryAsElectronics()">Electronics</button>
-        <button (click)="setCategoryAsStorage()">Storage</button>
-        <button (click)="setCategoryAsOther()">Other</button>
-        
-        <label for="AvailabilityTime">Availability Time: </label>
-        <input type="datetime-local" id="availabilityTime" name="availabilityTime" [(ngModel)]="AvailabilityTime" [ngModelOptions]="{standalone:true}" />
-        
-        <label for="location"> Location: </label>
-        <button (click)="getLocation()">Get Current Location</button>
-        
-        <div *ngIf="location"><p>Location: {{ location }}</p></div>
-        
-        <button class="pure-button" (click)="addnew()">Add Item to List</button>
-    </form>
-
+    <div class="container">
+        <form class="pure-form pure-form-stacked">         
+            <label>Category</label>
+            <label>Category</label>
+    
+            <div class="category-buttons">
+                <button type="button" (click)="setCategory('Lighting')">Lighting</button>
+                <button type="button" (click)="setCategory('Decoration')">Decoration</button>
+                <button type="button" (click)="setCategory('Furniture')">Furniture</button>
+                <button type="button" (click)="setCategory('Electronics')">Electronics</button>
+                <button type="button" (click)="setCategory('Storage')">Storage</button>
+                <button type="button" (click)="setCategory('Other')">Other</button>
+            </div>
+            
+            <label for="AvailabilityTime">Availability Time: </label>
+            <input type="datetime-local" id="availabilityTime" name="availabilityTime" [(ngModel)]="AvailabilityTime" [ngModelOptions]="{standalone:true}" />
+            
+            <label for="location"> Location: </label>
+            <button (click)="getLocation()">Get Current Location</button>
+            
+            <div *ngIf="location"><p>Location: {{ location }}</p></div>
+            
+            <button class="pure-button" (click)="addnew()">Add Item to List</button>
+        </form>    
+    </div>
 </m-container>

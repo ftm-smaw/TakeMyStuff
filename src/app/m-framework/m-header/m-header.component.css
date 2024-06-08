@@ -1,23 +1,45 @@
-.logo-container {
-    position: fixed;
-    top: 10px; 
-    left: 10px; 
-  }
-  
-  /* Below the logo */
-  .logo-title {
-    display: inline-block; 
-    margin-top: 70px; 
-    text-align: center;
-    width: 100%;
-  }
-/* Next to the logo */
-  /* .logo-title {
-    display: inline-block; 
-    margin-top: 10px; 
-    margin-left: 30%;
-    margin-bottom: 5%;
-  }
- */
+.header {
+  background: url('https://cisweb.lancaster.ac.uk/EventsMedia/mariablog2-637435338809574339.jpg') no-repeat center center;
+  background-size: cover;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+ 
+.header-content {
+  text-align: center;
+}
 
-  
+.app-title{
+  color: white;
+  font-size: 32px;
+}
+ 
+.menu-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  gap: 15px;
+}
+ 
+.menu-item {
+  list-style: none;
+}
+ 
+.menu-link {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
+ 
+.menu-link:hover {
+  color: #ffffff; 
+}
+ 
+.menu-link:active, .menu-link:focus {
+  color: rgb(254, 254, 254); 
+}

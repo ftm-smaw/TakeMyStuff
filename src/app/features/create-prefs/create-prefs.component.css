@@ -1,0 +1,63 @@
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+ 
+  .pure-form-stacked label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #333;
+  }
+ 
+  .pure-form-stacked button {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: #0e2e09;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+ 
+  .pure-form-stacked button:hover {
+    background-color: #285d26;
+  }
+ 
+  .pure-form-stacked input[type="datetime-local"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+ 
+  .pure-form-stacked .pure-button {
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: #143b0f;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+ 
+  .pure-form-stacked .pure-button:hover {
+    background-color: #285d26;
+  }
+ 
+  .pure-form-stacked .location {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+ 

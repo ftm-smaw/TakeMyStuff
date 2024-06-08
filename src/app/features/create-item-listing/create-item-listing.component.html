@@ -1,48 +1,56 @@
-<m-container>
-    <form class="pure-form pure-form-stacked">
-      <label for="itemName">Item Name
-        <input type="text" id="itemName" placeholder="Enter the item name" name="itemName" [(ngModel)]="itemName" [ngModelOptions]="{standalone: true}" />
-      </label>
-     
-      <label>Category</label>
-      <div>
-        <button type="button" (click)="setCategoryAsLighting()">Lighting</button>
-        <button type="button" (click)="setCategoryAsDecoration()">Decoration</button>
-        <button type="button" (click)="setCategoryAsFurniture()">Furniture</button>
-        <button type="button" (click)="setCategoryAsElectronics()">Electronics</button>
-        <button type="button" (click)="setCategoryAsStorage()">Storage</button>
-        <button type="button" (click)="setCategoryAsOther()">Other</button>
-      </div>
+<m-container class="container">
+  <h2 class="title">Create Item Listing</h2>
+  <form class="pure-form pure-form-stacked">
+    <label for="itemName">Item Name
+      <input type="text" id="itemName" placeholder="Enter the item name" name="itemName" [(ngModel)]="itemName" [ngModelOptions]="{standalone: true}" />
+    </label>
+   
+    <label>Category</label>
+    <div class="category-buttons">
+      <button type="button" (click)="setCategory('Lighting')">Lighting</button>
+      <button type="button" (click)="setCategory('Decoration')">Decoration</button>
+      <button type="button" (click)="setCategory('Furniture')">Furniture</button>
+      <button type="button" (click)="setCategory('Electronics')">Electronics</button>
+      <button type="button" (click)="setCategory('Storage')">Storage</button>
+      <button type="button" (click)="setCategory('Other')">Other</button>
+    </div>
  
-      <label for="desc">Description
-        <input type="text" id="desc" placeholder="Put a short description" name="desc" [(ngModel)]="desc" [ngModelOptions]="{standalone: true}" />
-      </label>
+    <label for="desc">Description
+      <input type="text" id="desc" placeholder="Put a short description" name="desc" [(ngModel)]="desc" [ngModelOptions]="{standalone: true}" />
+    </label>
  
-      <label for="availabilityTime">Availability Time
-        <input type="datetime-local" id="availabilityTime" name="availabilityTime" [(ngModel)]="AvailabilityTime" [ngModelOptions]="{standalone: true}" />
-      </label>
+    <label for="availabilityTime">Availability Time
+      <input type="datetime-local" id="availabilityTime" name="availabilityTime" [(ngModel)]="AvailabilityTime" [ngModelOptions]="{standalone: true}" />
+    </label>
  
-      <label for="file">Upload Image
-        <input type="file" id="file" (change)="onSelectImage($event)" />
-      </label>
+    <label for="file">Upload Image
+      <input type="file" id="file" (change)="onSelectImage($event)" />
+    </label>
+    <div *ngIf="selectedImage">
+      <img [src]="selectedImage" alt="Item Image" />
+    </div>
  
-     
-      <div *ngIf="selectedImage">
-        <img [src]="selectedImage" alt="Item Image" style="max-width: 200px; margin-top: 10px;">
-      </div>
  
-      <label for="location">Location
-        <button type="button" (click)="getLocation()">Get Current Location</button>
-      </label>
-      <div *ngIf="location">
-        <p>Location: {{ location }}</p>
-      </div>
  
-      <label for="price">Price
-        <input type="number" id="price" [(ngModel)]="price" [ngModelOptions]="{standalone: true}" />
-      </label>
+    <label for="price">Price
+      <input type="number" id="price" [(ngModel)]="price" [ngModelOptions]="{standalone: true}" />
+    </label>
  
-      <button type="button" class="pure-button" (click)="addItemToList()">Add Item to List</button>
-    </form>
-  </m-container>
  
+ 
+    <label for="location-method">Choose Location Method:</label>
+    <button class="pure-button" (click)="toggleLocationInput(true)">Choose Location Through Routing</button>
+    <button  class="pure-button" (click)="showUserLocation()">Show User Location</button>
+ 
+    <div *ngIf="useMapForLocation">
+      <m-map
+        [zoomLevel]="10"
+        [lat]="lat"
+        [lng]="lng"
+        (mapInstance)="getMapInstance($event)"
+      ></m-map>
+    </div>
+ 
+    <button type="button" class="pure-button" (click)="addItemToList()">Add Item to List</button>
+  </form>
+</m-container>

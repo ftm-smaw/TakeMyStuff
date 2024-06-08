@@ -3,10 +3,10 @@ import { MContainerComponent } from '../../m-framework/m-container/m-container.c
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FirebaseService } from '../../services/firebase.service';
-import { MAhaComponent } from "../../m-framework/m-aha/m-aha.component";
+import { chat_session, message } from '../../app-data/Data';
 import { ToastService } from '../../services/toast.service';
-import { message } from '../../app-data/Data';
- 
+import { MAhaComponent } from "../../m-framework/m-aha/m-aha.component";
+
 @Component({
     selector: 'app-chat-seller',
     standalone: true,
@@ -18,17 +18,25 @@ export class ChatSellerComponent implements OnInit {
   sender_username: string;
   message_content: string = "";
   messages: message[];
+  current_chat_session: chat_session;
  
   constructor(private firebase: FirebaseService, public toast: ToastService) {
     this.sender_username = "Seller";
     this.message_content = "";
     this.messages = [];
+    this.current_chat_session = new chat_session("", this.messages);
   }
  
   ngOnInit(): void {
+    this.createNewChat();
     this.getMessages();
   }
  
+  createNewChat(){
+    if(this.messages.length != 0){this.firebase.deleteObject('/chat_session', this.current_chat_session.key);}
+    this.firebase.createObject('/chat_session', this.current_chat_session);
+  }
+
   getMessages(): void {
     this.firebase.getDataContinuously('messages').subscribe((data: any) => {
       this.messages = [];
@@ -36,20 +44,30 @@ export class ChatSellerComponent implements OnInit {
         if (data.hasOwnProperty(key)) {
           const item = data[key];
           this.messages.push(new message(key, item.sender_username, item.message_content));
+          console.log("in getMessages(), this.messages was successfully initialised");
+          this.firebase.updateObject('/chat_session',this.current_chat_session.key,{key: this.current_chat_session.key, messages: this.messages});
+          let notification: string = data[key].sender_username + ": " + data[key].message_content;
+          this.toast.prepare(notification,"success",5000,"New message alert").show();
         }
       }
     });
   }
-
+ 
+  endChatSession(){
+    this.firebase.deleteObject('/chat_sessions',this.current_chat_session.key);
+    while(this.messages.length != 0)
+      {for(let i = 0; i < this.messages.length; i++){
+      this.firebase.deleteObject('/messages',this.messages[i].key);
+     }}
+     this.toast.prepare("All messages are removed","success",5000,"Chat Session Ended").show();
+  }
 
   sendMessage(): void {
     const new_message = { message_content: this.message_content, sender_username: this.sender_username };
     if (new_message.message_content.trim() !== "") {
       let key = this.firebase.addToList('/messages', new_message)!;
     }
-    
-    let notification: string = new_message.sender_username + ": " +new_message.message_content;
-    this.toast.prepare(notification,"success",5000,"New message alert").show();
     this.message_content = "";
   }
 }
+ 

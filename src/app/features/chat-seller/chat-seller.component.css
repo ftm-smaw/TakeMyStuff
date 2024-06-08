@@ -54,7 +54,16 @@
     margin-right: 10px;
 }
 
-.bottom button {
-    padding: 10px;
+.button{
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: #28a745;
+    color: #fff;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover{
+    background-color: #218838;
 }

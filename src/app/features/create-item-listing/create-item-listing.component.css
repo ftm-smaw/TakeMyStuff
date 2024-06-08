@@ -1,0 +1,101 @@
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+ 
+  h2.title {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+ 
+  .pure-form-stacked label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #333;
+  }
+ 
+  .pure-form-stacked input[type="text"],
+  .pure-form-stacked input[type="datetime-local"],
+  .pure-form-stacked input[type="number"],
+  .pure-form-stacked input[type="file"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+ 
+  .pure-form-stacked .category-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Adds space between buttons */
+    margin-bottom: 15px;
+  }
+ 
+  .pure-form-stacked .category-buttons button {
+    flex: 1 1 calc(33.333% - 20px); /* Ensures three buttons per row */
+    margin: 5px; /* Ensures consistent margin around each button */
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+   
+    background-color:#143b0f;
+    color: #ffffff;
+    cursor: pointer;
+   
+    transition: background-color 0.3s ease;
+  }
+ 
+  .pure-form-stacked .category-buttons button:hover {
+    background-color: #285d26;
+  }
+ 
+  .pure-form-stacked button[type="button"] {
+    display: inline-block;
+    margin: 5px 0;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    background-color:   #0a3c12;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+ 
+  .pure-form-stacked button[type="button"]:hover {
+    background-color: #0056b3;
+  }
+ 
+  .pure-form-stacked button[type="submit"] {
+    width: 100%;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: #28a745;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+ 
+  .pure-form-stacked button[type="submit"]:hover {
+    background-color: #218838;
+  }
+ 
+  .pure-form-stacked img {
+    max-width: 100%;
+    margin-top: 10px;
+    border-radius: 4px;
+  }
+ 
+  .pure-form-stacked .location p {
+    margin-top: 5px;
+    font-weight: bold;
+  }
